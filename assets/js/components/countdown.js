@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import soundHigh from '../../sounds/countdown_high.mp3';
 import soundLow from '../../sounds/countdown_low.mp3';
@@ -6,6 +7,10 @@ import soundLow from '../../sounds/countdown_low.mp3';
 const COUNTDOWN_FROM = 5;
 
 class Countdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0, active: false }
+  }
 
   start() {
     this.setState({counter: COUNTDOWN_FROM, active: true});
@@ -15,7 +20,7 @@ class Countdown extends React.Component {
 
   tick() {
     this.setState({counter: this.state.counter - 1});
-    if (this.state.counter > 0) {
+    if (this.state.counter > 1) {
       this.lowTickSound.play();
     } else {
       this.setState({active: false})
@@ -29,8 +34,7 @@ class Countdown extends React.Component {
     return this.state.active;
   }
 
-  componentWillMount() {
-    this.state = { counter: 0, active: false }
+  componentDidMount() {
     this.tick = this.tick.bind(this);
     this.lowTickSound = new Audio(soundLow);
     this.highTickSound = new Audio(soundHigh);
@@ -45,6 +49,6 @@ class Countdown extends React.Component {
   }
 }
 
-Countdown.propTypes = { onCountdownOver: React.PropTypes.func.isRequired };
+Countdown.propTypes = { onCountdownOver: PropTypes.func.isRequired };
 
 export default Countdown;

@@ -14,8 +14,12 @@ import Winner from './winner';
 
 
 class Race extends React.Component {
+  constructor(props) {
+    super(props);
+    this.countdownRef = React.createRef();
+  }
 
-  componentWillMount() {
+  componentDidMount() {
     this.wsHandler = new WSHandler(data => this.onWebsocketMessage(data));
     this.timer = new Timer();
   }
@@ -71,8 +75,8 @@ class Race extends React.Component {
   }
 
   startCountdown() {
-    if (!this.props.raceIsActive && !this.refs.countdownComponent.isActive()) {
-      this.refs.countdownComponent.start();
+    if (!this.props.raceIsActive && !this.countdownRef.current.isActive()) {
+      this.countdownRef.current.start();
     }
   }
 
@@ -111,7 +115,7 @@ class Race extends React.Component {
           
           {raceFinished ? (<Winner winner={this.getWinner()} />) : (null)}
           
-          <Countdown onCountdownOver={() => this.onCountdownOver()} ref="countdownComponent" />
+          <Countdown onCountdownOver={() => this.onCountdownOver()} ref={this.countdownRef} />
           <RaceCanvas positionA={positionA} positionB={positionB} distance={distance} />
         </div>
         <div className="row">

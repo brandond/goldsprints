@@ -1,4 +1,5 @@
 import React  from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import { COLOR_A, COLOR_B } from '../actions/types';
@@ -30,9 +31,9 @@ class RaceHeader extends React.Component {
 }
 
 RaceHeader.propTypes = {
-  raceTime: React.PropTypes.number,
-  playerOne: React.PropTypes.string.isRequired,
-  playerTwo: React.PropTypes.string.isRequired
+  raceTime: PropTypes.number,
+  playerOne: PropTypes.string.isRequired,
+  playerTwo: PropTypes.string.isRequired
 };
 
 export default RaceHeader;

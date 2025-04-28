@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 
 
@@ -17,9 +17,9 @@ class Race(models.Model):
     race_time_a = models.FloatField(blank=True, null=True)
     race_time_b = models.FloatField(blank=True, null=True)
     first_round = models.ForeignKey(
-        'Event', related_name='first_round', null=True, blank=True)
+        'Event', related_name='first_round', null=True, blank=True, on_delete=models.CASCADE)
     second_round = models.ForeignKey(
-        'Event', related_name='second_round', null=True, blank=True)
+        'Event', related_name='second_round', null=True, blank=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

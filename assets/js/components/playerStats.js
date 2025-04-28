@@ -1,4 +1,5 @@
 import React  from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 
@@ -18,11 +19,11 @@ class PlayerStats extends React.Component {
 }
 
 PlayerStats.propTypes = {
-  color: React.PropTypes.string,
-  raceTime: React.PropTypes.number,
-  position: React.PropTypes.number,
-  speed: React.PropTypes.number,
-  player: React.PropTypes.string.isRequired,
+  color: PropTypes.string,
+  raceTime: PropTypes.number,
+  position: PropTypes.number,
+  speed: PropTypes.number,
+  player: PropTypes.string.isRequired,
 };
 
 export default PlayerStats;

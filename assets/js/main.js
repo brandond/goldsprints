@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import * as T from './actions/types';
@@ -25,22 +25,21 @@ if (raceContainer) {
     nextRaceUrl
   } = raceContainer.dataset;
   const distance = parseFloat(raceContainer.dataset.distance);
+  const root = createRoot(raceContainer);
 
   if (mode === T.MODE_RACE) {
     store.dispatch(initializeRace(playerA, playerB, distance, saveRaceUrl, nextRaceUrl, prevRaceUrl));
-    ReactDOM.render(
+    root.render(
       <Provider store={store}>
         <Race />
-      </Provider>,
-      raceContainer
+      </Provider>
     );
   } else {
     store.dispatch(initializeFreeRide(playerA, playerB, distance));
-    ReactDOM.render(
+    root.render(
       <Provider store={store}>
         <FreeRide />
-      </Provider>,
-      raceContainer
+      </Provider>
     );
   }
 }

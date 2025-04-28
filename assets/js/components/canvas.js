@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { COLOR_A, COLOR_B } from '../actions/types';
 
 
 class RaceCanvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.canvasRef = React.createRef();
+  }
 
   drawFace(context) {
     context.beginPath();
@@ -66,9 +71,8 @@ class RaceCanvas extends React.Component {
   }
 
   componentDidMount() {
-    this.canvas = this.refs.canvas;
-    this.ctx = this.canvas.getContext('2d');
-    this.radius = this.canvas.height / 2;
+    this.ctx = this.canvasRef.current.getContext('2d');
+    this.radius = this.canvasRef.current.height / 2;
     this.ctx.translate(this.radius, this.radius);
     this.radius *= 0.9;
     this.drawPlayerPosition();
@@ -79,14 +83,14 @@ class RaceCanvas extends React.Component {
   }
 
   render() {
-    return <canvas id="gameCanvas" width="500" height="500" ref="canvas" />;
+    return <canvas id="gameCanvas" width="500" height="500" ref={this.canvasRef} />;
   }
 }
 
 RaceCanvas.propTypes = {
-  positionA: React.PropTypes.number.isRequired,
-  positionB: React.PropTypes.number.isRequired,
-  distance: React.PropTypes.number.isRequired
+  positionA: PropTypes.number.isRequired,
+  positionB: PropTypes.number.isRequired,
+  distance: PropTypes.number.isRequired
 };
 
 export default RaceCanvas;

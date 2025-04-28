@@ -11,7 +11,7 @@ import { WSHandler, parseWsData } from './../wshandler';
 
 class FreeRide extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.wsHandler = new WSHandler((data) => {this.onWebsocketMessage(data)});
   }
 
