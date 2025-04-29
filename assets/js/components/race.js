@@ -28,26 +28,24 @@ class Race extends React.Component {
     const { raceIsActive, positionA, positionB } = this.props;
 
     if (raceIsActive) {
-      const { deltaA, deltaB, speedA, speedB } = parseWsData(data);
+      const raceData = parseWsData(data);
 
       // calculate current race time and players' positions
       const raceTime = this.timer.getTime();
-      const newPositionA = positionA + deltaA;
-      const newPositionB = positionB + deltaB;
 
       // check if any player has finished the race
-      const finishedA = this.checkPlayerFinished(PLAYER_A, newPositionA, raceTime);
-      const finishedB = this.checkPlayerFinished(PLAYER_B, newPositionB, raceTime);
+      const finishedA = this.checkPlayerFinished(PLAYER_A, raceData.a.distance, raceTime);
+      const finishedB = this.checkPlayerFinished(PLAYER_B, raceData.b.distance, raceTime);
 
       // update time
       this.props.dispatchUpdateTime(raceTime);
 
       // update players' positions 
       if (!finishedA) {
-        this.props.dispatchUpdatePosition(PLAYER_A, newPositionA, speedA);
+        this.props.dispatchUpdatePosition(PLAYER_A, raceData.a.distance, raceData.a.speed);
       }
       if (!finishedB) {
-        this.props.dispatchUpdatePosition(PLAYER_B, newPositionB, speedB);
+        this.props.dispatchUpdatePosition(PLAYER_B, raceData.b.distance, raceData.b.speed);
       }
 
       // stop the race if both players finished

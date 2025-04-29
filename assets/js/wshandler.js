@@ -1,7 +1,7 @@
 export class WSHandler {
 
   constructor(onMessageCallback) {
-    const ws = new WebSocket("ws://localhost:8765/");
+    const ws = new WebSocket("ws://"+location.host+"/ws");
 
     ws.onmessage = (event) => {
       onMessageCallback(JSON.parse(event.data));
@@ -9,29 +9,31 @@ export class WSHandler {
 
     ws.onerror = () => {
       this.connected = false;
-      console.log("Failed to establish WS connection");
+      console.log("Failed to establish websocket connection");
     };
 
     ws.onopen = () => {
       this.connected = true;
-      console.log("Connected to webscocket");
+      console.log("Connected to websocket");
     }
 
     ws.onclose = () => {
       this.connected = false;
-      console.log("WS connection closed");
+      console.log("Websocket connection closed");
     };
   }
 
 }
 
-
 export function parseWsData(wsData) {
-  // todo: probably map() or something similar would help here 
-  const speedA = parseFloat(wsData.speed_a);
-  const speedB = parseFloat(wsData.speed_b);
-  const interval = parseFloat(wsData.interval);
-  const deltaA = parseFloat(wsData.delta_a);
-  const deltaB = parseFloat(wsData.delta_b);
-  return { speedA, speedB, deltaA, deltaB }
+  return {
+    "a": {
+      "speed": parseFloat(wsData.a.speed),
+      "distance": parseFloat(wsData.a.distance)
+    },
+    "b": {
+      "speed": parseFloat(wsData.b.speed),
+      "distance": parseFloat(wsData.b.distance)
+    }
+  };
 }

@@ -1,5 +1,5 @@
 FROM node:22 as install
-RUN apt-get update && apt-get install -y python3-pip
+RUN apt-get update && apt-get install -y python3-pip tini redis-server
 
 FROM install as build
 WORKDIR /src
@@ -13,5 +13,6 @@ RUN npm cache clean --force && \
 FROM build as release
 RUN PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install -r requirements.txt
 RUN python3 manage.py migrate
-EXPOSE 8000 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+EXPOSE 8000
+ENTRYPOINT ["/usr/bin/tini", "--", "/src/docker-entrypoint.sh"]
+CMD []

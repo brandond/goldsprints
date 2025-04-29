@@ -16,14 +16,10 @@ class FreeRide extends React.Component {
   }
 
   onWebsocketMessage(data) {
-    const { positionA, positionB } = this.props;
-    const { deltaA, deltaB, speedA, speedB } = parseWsData(data);
+    const raceData = parseWsData(data);
 
-    const newPositionA = positionA + deltaA;
-    const newPositionB = positionB + deltaB;
-
-    this.props.dispatchUpdatePosition(PLAYER_A, newPositionA, speedA);
-    this.props.dispatchUpdatePosition(PLAYER_B, newPositionB, speedB);
+    this.props.dispatchUpdatePosition(PLAYER_A, raceData.a.distance, raceData.a.speed);
+    this.props.dispatchUpdatePosition(PLAYER_B, raceData.b.distance, raceData.b.speed);
   }
 
   render() {

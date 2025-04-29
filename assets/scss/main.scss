@@ -171,10 +171,12 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba($black, 0.6);
   margin: 0 -15px 0 -15px;
   padding: 5px;
+  font-size: 3.2rem;
 
   .player-name {
     font-weight: bold;
     text-transform: uppercase;
+    font-family: 'Pricedown', Arial, sans-serif;
   }
 }
 

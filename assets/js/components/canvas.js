@@ -38,11 +38,11 @@ class RaceCanvas extends React.Component {
     for (let i of indexes) {
       ang = i * Math.PI / 2;
       ctx.rotate(ang);
-      ctx.translate(0, -this.radius * 0.85);
+      ctx.translate(0, -this.radius * 0.9);
       ctx.rotate(-ang);
       ctx.fillText(txtValues[i - 1], 0, 0);
       ctx.rotate(ang);
-      ctx.translate(0, this.radius * 0.85);
+      ctx.translate(0, this.radius * 0.9);
       ctx.rotate(-ang);
     }
 }
@@ -50,8 +50,8 @@ class RaceCanvas extends React.Component {
   drawHand(context, position, color) {
     // translate linear position to circular
     position = (position * 2 * Math.PI / this.props.distance);
-    var length = this.radius * 0.9;
-    var width = this.radius * 0.02;
+    var length = this.radius * 0.75;
+    var width = this.radius * 0.06;
     context.beginPath();
     context.lineWidth = width;
     context.lineCap = "round";
@@ -83,7 +83,7 @@ class RaceCanvas extends React.Component {
   }
 
   render() {
-    return <canvas id="gameCanvas" width="500" height="500" ref={this.canvasRef} />;
+    return <canvas id="gameCanvas" width="640" height="640" ref={this.canvasRef} />;
   }
 }
 

@@ -7,7 +7,7 @@ class PlayerStats extends React.Component {
   render() {
     let style = { color: this.props.color }
     let raceTime = this.props.raceTime * 1000;
-    let speedKmh = (this.props.speed * 3.6).toFixed();
+    let speedKmh = this.props.speed.toFixed(1);
     return (
       <div className={"race-stats " + this.props.className}>
         <p className="player-name" style={style}>{this.props.player}</p>

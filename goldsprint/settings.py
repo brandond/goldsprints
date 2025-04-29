@@ -13,6 +13,8 @@ ALLOWED_HOSTS = ["*"]
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,8 +59,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'goldsprint.wsgi.application'
+ASGI_APPLICATION = 'goldsprint.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    }
+}
 
 DATABASES = {
     'default': {
@@ -91,7 +101,7 @@ WEBPACK_LOADER = {
 }
 
 
-DEFAULT_DISTANCE = 500
+DEFAULT_DISTANCE = 400
 
 MODE_RACE = 'MODE_RACE'
 MODE_FREE_RIDE = 'MODE_FREE_RIDE'

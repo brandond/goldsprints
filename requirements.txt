@@ -1,8 +1,12 @@
 Django==5.2
+channels==4.2.2
+channels_redis==4.2.1
 clint==0.5.1
+daphne==4.1.2
 dj-database-url==2.3.0
 django-bootstrap3==25.1
 django-webpack-loader==3.1.1
 djangorestframework==3.16.0
+pyserial-asyncio==0.6
 pyserial==3.5
 websockets==15.0.1
