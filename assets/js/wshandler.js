@@ -27,6 +27,7 @@ export class WSHandler {
 
 export function parseWsData(wsData) {
   return {
+    "time": wsData.time,
     "a": {
       "speed": parseFloat(wsData.a.speed),
       "distance": parseFloat(wsData.a.distance)

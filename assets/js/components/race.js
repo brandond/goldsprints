@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { WSHandler, parseWsData } from './../wshandler';
 import { startRace, updatePosition, stopRace, playerFinished, saveRaceResults, resetRace, updateTime } from '../actions';
 import { PLAYER_A, PLAYER_B, COLOR_A, COLOR_B } from '../actions/types';
-import Timer from '../timer';
 import Countdown from './countdown';
 import RaceCanvas from './canvas';
 import RaceHeader from './header';
@@ -21,7 +20,6 @@ class Race extends React.Component {
 
   componentDidMount() {
     this.wsHandler = new WSHandler(data => this.onWebsocketMessage(data));
-    this.timer = new Timer();
   }
 
   onWebsocketMessage(data) {
@@ -29,9 +27,7 @@ class Race extends React.Component {
 
     if (raceIsActive) {
       const raceData = parseWsData(data);
-
-      // calculate current race time and players' positions
-      const raceTime = this.timer.getTime();
+      const raceTime = raceData.time;
 
       // check if any player has finished the race
       const finishedA = this.checkPlayerFinished(PLAYER_A, raceData.a.distance, raceTime);
@@ -40,7 +36,7 @@ class Race extends React.Component {
       // update time
       this.props.dispatchUpdateTime(raceTime);
 
-      // update players' positions 
+      // update players' positions
       if (!finishedA) {
         this.props.dispatchUpdatePosition(PLAYER_A, raceData.a.distance, raceData.a.speed);
       }
@@ -79,7 +75,6 @@ class Race extends React.Component {
   }
 
   resetRace() {
-    this.timer.reset();
     this.props.dispatchResetRace();
   }
 
@@ -96,7 +91,6 @@ class Race extends React.Component {
 
   onCountdownOver() {
     this.props.dispatchStart();
-    this.timer.start();
   }
 
   render() {
