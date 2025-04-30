@@ -1,14 +1,12 @@
 version: '3'
 services:
-  gs:
-    image: gs:latest
+  goldsprints:
+    image: goldsprints:latest
     build: .
     hostname: goldsprints   
-    network_mode: "host"
     restart: unless-stopped
     expose:
-      - "8000"
+      - "8080:8000"
     privileged: true
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
-      - /dev/ttyUSB0:/dev/ttyUSB0
