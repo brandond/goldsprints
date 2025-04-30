@@ -12,7 +12,7 @@ RUN PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install -r requirements.txt
 COPY docker-entrypoint.sh manage.py /app
 COPY goldsprint /app/goldsprint
 COPY templates /app/templates
-RUN python3 manage.py migrate
 COPY --from=build /src/assets /app/assets
+RUN python3 manage.py migrate && python3 manage.py collectstatic --no-input
 EXPOSE 8000
 ENTRYPOINT ["/usr/bin/tini", "--", "/app/docker-entrypoint.sh"]
