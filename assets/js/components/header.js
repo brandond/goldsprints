@@ -16,7 +16,6 @@ class RaceHeader extends React.Component {
     const styleA = { color: COLOR_A }
     const styleB = { color: COLOR_B }
     let raceTime = this.props.raceTime;
-    raceTime = raceTime ? raceTime * 1000 : 0;
     return (
       <div className="race__header">
         <h1 className="title">

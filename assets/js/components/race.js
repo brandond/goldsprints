@@ -57,7 +57,7 @@ class Race extends React.Component {
       return true;
     }
     if (position >= distance) {
-      console.log(`Player ${player} ended in ${raceTime} s`);
+      console.log(`Player ${player} ended in ${raceTime} ms`);
       this.props.dispatchPlayerFinished(player, raceTime);
       return true;
     }

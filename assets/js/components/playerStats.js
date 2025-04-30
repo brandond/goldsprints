@@ -6,7 +6,7 @@ import moment from 'moment';
 class PlayerStats extends React.Component {
   render() {
     let style = { color: this.props.color }
-    let raceTime = this.props.raceTime * 1000;
+    let raceTime = this.props.raceTime;
     let speedKmh = this.props.speed.toFixed(1);
     return (
       <div className={"race-stats " + this.props.className}>
