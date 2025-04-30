@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '8f!)^a!$^(n$2@jz6&@d-9q9h*i!6=f+ru-5#sjpxidc#i^d6z'
 
-DEBUG = True
+DEBUG = os.getenv("GOLDSPRINT_DEBUG", "false").lower() == "true"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -101,7 +101,7 @@ WEBPACK_LOADER = {
     }
 }
 
-DEFAULT_DISTANCE = 400
+DEFAULT_DISTANCE = int(os.getenv("GOLDSPRINT_DEFAULT_DISTANCE", "400"))
 
 MODE_RACE = 'MODE_RACE'
 MODE_FREE_RIDE = 'MODE_FREE_RIDE'
