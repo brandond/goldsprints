@@ -54,7 +54,7 @@ body {
 }
 
 body {
-  background: url(../img/miami-background.jpg) no-repeat center center fixed;
+  background: url('../img/miami-background.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-menu {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   z-index: 1;
 
   a {
@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba($black, 0.6);
   margin: 0 -15px 0 -15px;
   padding: 5px;
-  font-size: 3.2rem;
+  font-size: 3rem;
 
   .player-name {
     font-weight: bold;

@@ -38,11 +38,11 @@ class RaceCanvas extends React.Component {
     for (let i of indexes) {
       ang = i * Math.PI / 2;
       ctx.rotate(ang);
-      ctx.translate(0, -this.radius * 0.9);
+      ctx.translate(0, -this.radius * 0.85);
       ctx.rotate(-ang);
       ctx.fillText(txtValues[i - 1], 0, 0);
       ctx.rotate(ang);
-      ctx.translate(0, this.radius * 0.9);
+      ctx.translate(0, this.radius * 0.85);
       ctx.rotate(-ang);
     }
 }

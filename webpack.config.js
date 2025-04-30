@@ -25,20 +25,11 @@ module.exports = {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },{
-        test: /\.woff$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
-      },{
         test: /\.mp3$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
+        type: 'asset/resource'
       },{
         test: /\.(png|jpg)$/,
-        loader: 'url-loader'
+        type: 'asset/resource'
       },{
         test: /\.(css|scss|sass|less)$/,
         loader: 'sass-loader',
@@ -46,11 +37,8 @@ module.exports = {
           sourceMap: true
         }
       },{
-        test: /\.(eot|otf|png|svg|ttf|woff|woff2)(\?v=[0-9.]+)?$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        },
+        test: /\.(eot|otf|svg|ttf|woff|woff2)(\?v=[0-9.]+)?$/,
+        type: 'asset',
         include: [
           resolve('node_modules')
         ]
@@ -59,7 +47,7 @@ module.exports = {
   },
 
   plugins: [
-    new BundleTracker({filename: 'webpack-stats.json'}),
+    new BundleTracker({filename: 'webpack-stats.json', relativePath: true}),
     new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
   ]
 };
