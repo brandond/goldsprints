@@ -46,6 +46,6 @@ if (raceContainer) {
 
 import $ from 'jquery';
 $('.scores__time').each(function() {
-  let rawTime = $(this).text();
-  $(this).text(moment.utc(rawTime).format('mm:ss.SSS'));
+  let rawTime = parseInt($(this).text());
+  $(this).text(moment.utc(rawTime).format('mm:ss.SS'));
 });

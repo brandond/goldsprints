@@ -23,7 +23,7 @@ class RaceHeader extends React.Component {
           <span> vs. </span>
           <span className="race__header__player" style={styleB}>{playerTwo}</span>
         </h1>
-        {showRaceTime && (<h2 className="title with-shadow">{moment.utc(raceTime).format('mm:ss.SSS')}</h2>)}
+        {showRaceTime && (<h2 className="title with-shadow time">{moment.utc(raceTime).format('mm:ss.SS')}</h2>)}
       </div>
     )
   }

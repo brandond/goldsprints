@@ -31,7 +31,7 @@ class RaceCanvas extends React.Component {
 
     let ang;
     let num;
-    ctx.font = this.radius * 0.15 + "px arial";
+    ctx.font = this.radius * 0.15 + "px ui-monospace";
     ctx.textBaseline="middle";
     ctx.textAlign="center";
 
@@ -45,7 +45,7 @@ class RaceCanvas extends React.Component {
       ctx.translate(0, this.radius * 0.85);
       ctx.rotate(-ang);
     }
-}
+  }
 
   drawHand(context, position, color) {
     // translate linear position to circular

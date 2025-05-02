@@ -11,8 +11,8 @@ class PlayerStats extends React.Component {
     return (
       <div className={"race-stats " + this.props.className}>
         <p className="player-name" style={style}>{this.props.player}</p>
-        <p>{speedKmh} km/h</p>
-        <p>{moment.utc(raceTime).format('mm:ss.SSS')}</p>
+        <p classname="player-speed">{speedKmh} km/h</p>
+        <p className="player-time">{moment.utc(raceTime).format('mm:ss.SS')}</p>
       </div>
     )
   }

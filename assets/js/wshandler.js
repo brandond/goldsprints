@@ -27,14 +27,14 @@ export class WSHandler {
 
 export function parseWsData(wsData) {
   return {
-    "time": wsData.time,
+    "time": wsData.time ?? 0,
     "a": {
-      "speed": parseFloat(wsData.a.speed),
-      "distance": parseFloat(wsData.a.distance)
+      "speed": parseFloat(wsData.a?.speed ?? 0),
+      "distance": parseFloat(wsData.a?.distance ?? 0)
     },
     "b": {
-      "speed": parseFloat(wsData.b.speed),
-      "distance": parseFloat(wsData.b.distance)
+      "speed": parseFloat(wsData.b?.speed ?? 0),
+      "distance": parseFloat(wsData.b?.distance ?? 0)
     }
   };
 }

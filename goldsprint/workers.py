@@ -18,6 +18,7 @@ class SerialDataWorker(AsyncConsumer):
                 print('Connected to serial port')
             except serial.SerialException as e:
                 print(f'Failed to connect to serial port: {e}')
+                await self.channel_layer.group_send('stream', {'type': 'game.data', 'state': '{}'})
             else:
                 asyncio.get_running_loop().create_task(self._read_serial())
 

@@ -17,7 +17,6 @@ $input-color-placeholder: rgba($black, 0.3);
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-
 @mixin pricedown-font() {
   font-family: 'Pricedown', Arial, sans-serif;
 }
@@ -114,6 +113,10 @@ h1, h2, h3, h4, h5, h6 {
       font-size: $font-size-h1;
     }
 
+    .time {
+      font-family: monospace;
+    }
+
     &__player {
       text-shadow: 2px 2px $black;
     }
@@ -177,6 +180,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Pricedown', Arial, sans-serif;
+  }
+
+  .player-time {
+    font-family: monospace;
   }
 }
 
